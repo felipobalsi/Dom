@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades de Manipulação do DOM</title>
+    <style>
+        /*Atividade 1 */
+        .quadrado {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Atividade 1:  -->
+    <h2>Atividade 1: Alterar Cor Ao Clicar</h2>
+    <div id="quadrado1" class="quadrado" style="background-color: blue;"></div>
+    <div id="quadrado2" class="quadrado" style="background-color: crimson;"></div>
+    <div id="quadrado3" class="quadrado" style="background-color: chartreuse;"></div>
+
+    <script>
+        function mudarCorQuadrado1() {
+            var quadrado1 = document.getElementById("quadrado1");
+            if (quadrado1.style.backgroundColor === 'blue') {
+                quadrado1.style.backgroundColor = 'red';
+            } else {
+                quadrado1.style.backgroundColor = 'blue';
+            }
+        }
+
+        function mudarCorQuadrado2() {
+            var quadrado2 = document.getElementById("quadrado2");
+            if (quadrado2.style.backgroundColor === 'crimson') {
+                quadrado2.style.backgroundColor = 'green';
+            } else {
+                quadrado2.style.backgroundColor = 'crimson';
+            }
+        }
+
+        function mudarCorQuadrado3() {
+            var quadrado3 = document.getElementById("quadrado3");
+            if (quadrado3.style.backgroundColor === 'chartreuse') {
+                quadrado3.style.backgroundColor = 'yellow';
+            } else {
+                quadrado3.style.backgroundColor = 'chartreuse';
+            }
+        }
+
+        document.getElementById("quadrado1").addEventListener('click', mudarCorQuadrado1);
+        document.getElementById("quadrado2").addEventListener('click', mudarCorQuadrado2);
+        document.getElementById("quadrado3").addEventListener('click', mudarCorQuadrado3);
+    </script>
+
+    <hr>
+
+    <!-- Atividade 2: -->
+    <h2>Atividade 2: Contador de Cliques</h2>
+    <button id="botaoContar">Contar Cliques</button>
+    <button id="botaoResetar">Resetar</button>
+    <p id="contador">Cliques: 0</p>
+    
+    <script>
+        var contador = 0;
+
+        function contarCliques() {
+            contador += 1;
+            document.getElementById("contador").innerText = "Cliques: " + contador;
+        }
+
+        function resetarCliques() {
+            contador = 0;
+            document.getElementById("contador").innerText = "Cliques: " + contador;
+        }
+
+        document.getElementById("botaoContar").addEventListener("click", contarCliques);
+        document.getElementById("botaoResetar").addEventListener("click", resetarCliques);
+    </script>
+
+    <hr>
+
+    <!-- Atividade 3: -->
+    <h2>Atividade 3: Mostrar Texto Ocultar</h2>
+    <button id="botaoMostrarOcultar">Mostrar/Ocultar</button>
+    <p id="textoOculto" style="display: none;">Achou!!! Este é o texto escondido.</p>
+
+    <script>
+        var visivel = false;
+
+        function mostrarOcultarTexto() {
+            var textoOculto = document.getElementById("textoOculto");
+            var botao = document.getElementById("botaoMostrarOcultar");
+
+            if (visivel) {
+                textoOculto.style.display = 'none';
+                botao.innerText = 'Mostrar';
+                visivel = false;
+            } else {
+                textoOculto.style.display = 'block';
+                botao.innerText = 'Ocultar';
+                visivel = true;
+            }
+        }
+
+        document.getElementById("botaoMostrarOcultar").addEventListener("click", mostrarOcultarTexto);
+    </script>
+
+    <hr>
+
+    <!-- Atividade 4:  -->
+    <h2>Atividade 4: Alterar Texto </h2>
+    <p id="texto">Texto padrão aqui.</p>
+    <button id="botaoMudarTexto">Mudar Texto</button>
+
+    <script>
+        function mudarTexto() {
+            var novoTexto = prompt("Digite o novo texto:");
+            if (novoTexto) {
+                document.getElementById("texto").innerText = novoTexto;
+            }
+        }
+
+        document.getElementById("botaoMudarTexto").addEventListener("click", mudarTexto);
+    </script>
+
+    <hr>
+
+    <!-- Atividade 5: -->
+    <h2>Atividade 5: Mudança de Texto ao Pressionar Qual Tecla</h2>
+    <p id="mensagem">Pressione uma tecla...</p>
+
+    <script>
+        function mostrarTecla(event) {
+            document.getElementById("mensagem").innerText = "Você pressionou: " + event.key;
+        }
+
+        document.addEventListener("keydown", mostrarTecla);
+    </script>
+
+    <hr>
+
+    <!-- Atividade 6: -->
+    <h2>Atividade 6: Eleições Municipais</h2>
+    <button id="botaoVotar">Votar</button>
+    <p id="resultadoVoto"></p>
+    <img id="fotoCandidato" src="" alt="Foto do Candidato" style="display: none; width: 150px; height: auto; margin-top: 10px;">
+
+    <script>
+        function votar() {
+            var numeroCandidato = prompt("Escolha seu candidato pelo número:\n12: Candidato Defante\n34: Candidato Dogonso");
+            var resultadoVoto = document.getElementById("resultadoVoto");
+            var fotoCandidato = document.getElementById("fotoCandidato");
+
+            if (numeroCandidato === "12") {
+                resultadoVoto.innerText = "Você votou no Candidato Defante.";
+                fotoCandidato.src = "https://fly.metroimg.com/upload/q_85,w_700/https://uploads.metroimg.com/wp-content/uploads/2022/02/14153250/Diogo-Defante.jpg";
+                fotoCandidato.style.display = "block";
+            } else if (numeroCandidato === "34") {
+                resultadoVoto.innerText = "Você votou no Candidato Dogonso.";
+                fotoCandidato.src = "https://i.pinimg.com/736x/0a/8f/da/0a8fda722926fc819622c42d701dea04.jpg";
+                fotoCandidato.style.display = "block";
+            } else {
+                resultadoVoto.innerText = "Voto Nulo.";
+                fotoCandidato.style.display = "none";
+            }
+        }
+
+        document.getElementById("botaoVotar").addEventListener("click", votar);
+    </script>
+
+    <hr>
+
+    <!-- Desafio:-->
+    <h2>Desafio: Criação de Lista ao Clicar</h2>
+    <button id="botaoAdicionar">Adicionar Item</button>
+    <button id="botaoResetarLista">Resetar Lista</button>
+    <ul id="listaItems"></ul>
+
+    <script>
+        function adicionarItem() {
+            var novoItem = prompt("Digite um item para adicionar à lista:");
+            if (novoItem) {
+                var li = document.createElement("li");
+                li.textContent = novoItem;
+                document.getElementById("listaItems").appendChild(li);
+            }
+        }
+
+        function resetarLista() {
+            document.getElementById("listaItems").innerHTML = ''; 
+        }
+
+        document.getElementById("botaoAdicionar").addEventListener("click", adicionarItem);
+        document.getElementById("botaoResetarLista").addEventListener("click", resetarLista);
+    </script>
+
+</body>
+</html>
